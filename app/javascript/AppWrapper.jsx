@@ -2,42 +2,27 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
-} from "react-router-dom";
+  Route
+} from "react-router-dom"
+import Navbar from './components/Navbar'
 
 const AppWrapper = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      <Navbar />
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/national_parks">
+          <NationalParks />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </Router>
-  );
+  )
 }
 
 function Home() {
@@ -48,8 +33,8 @@ function About() {
   return <h2>About</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function NationalParks() {
+  return <h2>National Parks</h2>;
 }
 
 export default AppWrapper
