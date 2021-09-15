@@ -1,9 +1,6 @@
 import React from 'react'
+import AppWrapper from './AppWrapper'
 
-const App = () => {
-  return (
-    <h1>Hello world from react</h1>
-  )
-}
+const App = () => (<AppWrapper />)
 
 export default App
