@@ -7,11 +7,55 @@ import Button from '@material-ui/core/Button'
 import HomeIcon from '@material-ui/icons/Home';
 import ExploreSharpIcon from '@material-ui/icons/ExploreSharp';
 import Typography from '@material-ui/core/Typography';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { useTheme, useMediaQuery } from '@material-ui/core';
+
+const navItems = [
+  { text: 'Home', to: '/', icon: <HomeIcon />, mobileOnly: true },
+  { text: 'National Parks', to: '/national_parks', icon: <ExploreSharpIcon />, mobileOnly: false },
+]
+
+const useMobileStyles = makeStyles({
+  root: {
+    top: 'auto',
+    bottom: 0,
+  }
+});
+
+const MobileNav = () => {
+  const classes = useMobileStyles()
+  const [value, setValue] = React.useState(0)
+
+  return (
+    <AppBar position='fixed' className={classes.root}>
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={classes.root}
+      >
+        {
+          navItems.map((item) => {
+            return (
+              <BottomNavigationAction
+                key={item.text}
+                label={item.text}
+                icon={item.icon}
+                component={Link}
+                to={item.to}
+              />
+            )
+          })
+        }
+      </BottomNavigation>
+    </AppBar>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   titleContent: {
     flexGrow: 1,
     display: 'flex',
@@ -19,27 +63,30 @@ const useStyles = makeStyles((theme) => ({
   },
   titleIcon: {
     marginRight: theme.spacing(2),
-  },
+  }
 }))
 
-const Navbar = () => {
+const Nav = () => {
   const classes = useStyles()
-  const navItems = [
-    { text: 'Home', to: '/', icon: <HomeIcon /> },
-    { text: 'National Parks', to: '/national_parks', icon: <ExploreSharpIcon /> },
-  ]
+  const items = navItems.filter((item) => !item.mobileOnly)
   return (
     <AppBar position="static">
       <Toolbar>
         <div className={classes.titleContent}>
-          <ExploreSharpIcon fontSize='large' className={classes.titleIcon} />
-          <Typography variant="h5">
-            Outdoors
-          </Typography>
+          <Button
+            color="inherit"
+            size='large'
+            component={Link}
+            to='/'
+          >
+            <Typography variant="h5">
+              Outdoors
+            </Typography>
+          </Button>
         </div>
 
         {
-          navItems.map((item) => {
+          items.map((item) => {
             return (
               <Button
                 key={item.text}
@@ -56,6 +103,13 @@ const Navbar = () => {
       </Toolbar>
     </AppBar>
   )
+}
+
+const Navbar = () => {
+  const theme = useTheme()
+  const showMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
+  return showMobile ? <MobileNav /> : <Nav />
 }
 
 export default Navbar

@@ -4,12 +4,12 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-import Navbar from './components/Navbar'
+import NavBar from './components/NavBar'
 
 const AppWrapper = () => {
   return (
     <Router>
-      <Navbar />
+      <NavBar />
       <Switch>
         <Route path="/about">
           <About />
@@ -21,6 +21,7 @@ const AppWrapper = () => {
           <Home />
         </Route>
       </Switch>
+
     </Router>
   )
 }
