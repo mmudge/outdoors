@@ -16,15 +16,23 @@ const navItems = [
   { text: 'National Parks', to: '/national_parks', icon: <ExploreSharpIcon />, mobileOnly: false },
 ]
 
-const useMobileStyles = makeStyles({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  mobile: {
     top: 'auto',
     bottom: 0,
+  },
+  titleContent: {
+    flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center'
+  },
+  titleIcon: {
+    marginRight: theme.spacing(2),
   }
-});
+}))
 
 const MobileNav = () => {
-  const classes = useMobileStyles()
+  const classes = useStyles()
   const [value, setValue] = React.useState(0)
 
   return (
@@ -55,22 +63,11 @@ const MobileNav = () => {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  titleContent: {
-    flexGrow: 1,
-    display: 'flex',
-    alignItems: 'center'
-  },
-  titleIcon: {
-    marginRight: theme.spacing(2),
-  }
-}))
-
 const Nav = () => {
   const classes = useStyles()
   const items = navItems.filter((item) => !item.mobileOnly)
   return (
-    <AppBar position="static">
+    <AppBar position="static" color='primary'>
       <Toolbar>
         <div className={classes.titleContent}>
           <Button

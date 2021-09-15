@@ -5,24 +5,35 @@ import {
   Route
 } from "react-router-dom"
 import NavBar from './components/NavBar'
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import { green, amber } from '@material-ui/core/colors'
+
+const theme = createTheme({
+  palette: {
+    primary: green,
+    secondary: amber
+  }
+})
+
 
 const AppWrapper = () => {
   return (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/national_parks">
-          <NationalParks />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/national_parks">
+            <NationalParks />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   )
 }
 
