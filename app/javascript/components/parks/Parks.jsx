@@ -1,0 +1,41 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import ParkCard from './ParkCard'
+import ParksHeader from './ParksHeader'
+import Box from '@material-ui/core/Box';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+ container: {
+    paddingTop: theme.spacing(10),
+  }
+}));
+
+const Parks = () => {
+  const classes = useStyles();
+
+  return (
+    <Container maxWidth="md">
+      <Box py={10}>
+        <ParksHeader />
+      </Box>
+      <Grid container justifyContent='center' spacing={3}>
+        {
+          [0,1,2,3,4,5,6,7,8,9].map((item) => {
+            return (
+              <Grid item xs={12} md={6} lg={4} xl={3}>
+                <ParkCard />
+              </Grid>
+            )
+          })
+        }
+      </Grid>
+    </Container>
+  );
+}
+
+export default Parks

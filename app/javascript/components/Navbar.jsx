@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
   titleIcon: {
     marginRight: theme.spacing(2),
+  },
+  selected: {
+    color: theme.palette.secondary.main,
+    '&$selected': {
+      color: theme.palette.secondary.main,
+    }
   }
 }))
 
@@ -36,21 +42,25 @@ const MobileNav = () => {
   const [value, setValue] = React.useState(0)
 
   return (
-    <AppBar position='fixed' className={classes.root}>
+    <AppBar position='fixed' className={classes.mobile}>
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
         showLabels
-        className={classes.root}
+        color='seconadry'
       >
         {
           navItems.map((item) => {
             return (
               <BottomNavigationAction
                 key={item.text}
+                classes={{
+                  selected: classes.selected
+                }}
                 label={item.text}
+                labelColor
                 icon={item.icon}
                 component={Link}
                 to={item.to}

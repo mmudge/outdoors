@@ -4,17 +4,21 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-import NavBar from './components/NavBar'
 import { createTheme, ThemeProvider } from '@material-ui/core'
-import { green, amber } from '@material-ui/core/colors'
+import { green, amber, grey } from '@material-ui/core/colors'
+import NavBar from './components/NavBar'
+import Parks from './components/parks/Parks'
 
 const theme = createTheme({
   palette: {
     primary: green,
-    secondary: amber
+    secondary: amber,
+    text: {
+      primary: grey[800],
+      secondary: grey[600]
+    }
   }
 })
-
 
 const AppWrapper = () => {
   return (
@@ -26,7 +30,7 @@ const AppWrapper = () => {
             <About />
           </Route>
           <Route path="/national_parks">
-            <NationalParks />
+            <Parks />
           </Route>
           <Route path="/">
             <Home />
@@ -43,10 +47,6 @@ function Home() {
 
 function About() {
   return <h2>About</h2>;
-}
-
-function NationalParks() {
-  return <h2>National Parks</h2>;
 }
 
 export default AppWrapper
