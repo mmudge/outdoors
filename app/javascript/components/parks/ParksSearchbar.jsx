@@ -1,14 +1,23 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
-  },
+    backgroundColor: theme.palette.common.white,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.only('md')]: {
+      width: '80%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '60%'
+    }
+  }
 }));
 
 export default function BasicTextFields() {
@@ -23,22 +32,28 @@ export default function BasicTextFields() {
   };
 
   return (
-    <OutlinedInput
+    <TextField
+      variant='outlined'
       type='text'
-      placeholder='Search National Parks'
-      color='secondary'
+      classes={{
+        root: classes.root,
+      }}
+      color='primary'
+      label='Search National Parks'
       onChange={handleChange}
-      endAdornment={
-        <InputAdornment position="end">
-          <IconButton
-            aria-label="search national parks"
-            onClick={handleClick}
-            edge="end"
-          >
-            <SearchIcon />
-          </IconButton>
-        </InputAdornment>
-      }
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="search national parks"
+              onClick={handleClick}
+              edge="end"
+            >
+              <SearchIcon/>
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
     />
   );
 }
