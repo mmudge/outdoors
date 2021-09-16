@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import { green, amber, grey } from '@material-ui/core/colors'
 import NavBar from './components/NavBar'
 import Parks from './components/parks/Parks'
+import Home from './components/home/Home'
 
 
 const theme = createTheme({
@@ -33,28 +34,17 @@ const AppWrapper = () => {
         <Router>
           <NavBar />
           <Switch>
-            <Route path="/about">
-              <About />
+            <Route path="/">
+              <Home />
             </Route>
             <Route path="/national_parks">
               <Parks />
-            </Route>
-            <Route path="/">
-              <Home />
             </Route>
           </Switch>
         </Router>
       </Box>
     </ThemeProvider>
   )
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
 }
 
 export default AppWrapper
