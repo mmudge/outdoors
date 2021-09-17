@@ -7,7 +7,7 @@ import {
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import Box from '@material-ui/core/Box';
 import { green, amber, grey } from '@material-ui/core/colors'
-import NavBar from './components/NavBar'
+import Navbar from './components/Navbar'
 import Parks from './components/parks/Parks'
 import Home from './components/home/Home'
 
@@ -19,7 +19,11 @@ const theme = createTheme({
       main: green[800],
       dark: green[900]
     },
-    secondary: amber,
+    secondary: {
+      light: amber[500],
+      main: amber[600],
+      dark: amber[700]
+    },
     text: {
       primary: grey[800],
       secondary: grey[600]
@@ -27,19 +31,28 @@ const theme = createTheme({
   }
 })
 
+// home path '/' must be last or all paths will match
+const routes = [
+  { path: '/national_parks', component: <Parks />},
+  { path: '/', component: <Home />}
+]
+
 const AppWrapper = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box bgcolor={theme.palette.grey[50]}>
         <Router>
-          <NavBar />
+          <Navbar />
           <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-            <Route path="/national_parks">
-              <Parks />
-            </Route>
+            {
+              routes.map((route) => {
+                return (
+                  <Route path={route.path}>
+                    {route.component}
+                  </Route>
+                )
+              })
+            }
           </Switch>
         </Router>
       </Box>

@@ -60,7 +60,6 @@ const MobileNav = () => {
                   selected: classes.selected
                 }}
                 label={item.text}
-                labelColor
                 icon={item.icon}
                 component={Link}
                 to={item.to}
@@ -87,7 +86,7 @@ const Nav = () => {
             to='/'
           >
             <Typography variant="h5">
-              Outdoors
+              Road Trip
             </Typography>
           </Button>
         </div>
