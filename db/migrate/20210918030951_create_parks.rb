@@ -11,7 +11,6 @@ class CreateParks < ActiveRecord::Migration[6.1]
       t.jsonb :enterance_passes
       t.string :full_name
       t.string :external_id
-      t.string :string
       t.jsonb :images_data
       t.float :latitude
       t.float :longitude

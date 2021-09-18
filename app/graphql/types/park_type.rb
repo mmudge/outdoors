@@ -11,7 +11,6 @@ module Types
     field :enterance_passes, GraphQL::Types::JSON, null: true
     field :full_name, String, null: true
     field :external_id, String, null: true
-    field :string, String, null: true
     field :images_data, GraphQL::Types::JSON, null: true
     field :latitude, Float, null: true
     field :longitude, Float, null: true

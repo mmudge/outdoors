@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2021_09_18_030951) do
     t.jsonb "enterance_passes"
     t.string "full_name"
     t.string "external_id"
-    t.string "string"
     t.jsonb "images_data"
     t.float "latitude"
     t.float "longitude"

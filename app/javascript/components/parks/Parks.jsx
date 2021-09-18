@@ -1,15 +1,15 @@
 import React from 'react';
+import {
+  useQuery,
+  gql
+} from "@apollo/client"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import ParkCard from './ParkCard'
 import ParksHeader from './ParksHeader'
 import Box from '@material-ui/core/Box';
-
-import {
-  useQuery,
-  gql
-} from "@apollo/client"
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const PARKS_QUERY = gql`
   query parksQuery {
@@ -18,6 +18,7 @@ const PARKS_QUERY = gql`
         node {
           id
           name
+          description
         }
       }
     }
@@ -27,17 +28,28 @@ const PARKS_QUERY = gql`
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  }
+  },
+    loading: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
 }));
 
 const Parks = () => {
+  const classes = useStyles()
   const { loading, error, data } = useQuery(PARKS_QUERY)
 
-  if (data) {
-    console.log('parks data', data)
+  if (loading) {
+    return (
+      <div className={classes.loading}>
+        <LinearProgress color="secondary" />
+      </div>
+    )
   }
 
-  const classes = useStyles()
+  const parks = data.parks.edges.map((e) => e.node)
 
   return (
     <Container maxWidth="md">
@@ -46,10 +58,10 @@ const Parks = () => {
       </Box>
       <Grid container justifyContent='center' spacing={3}>
         {
-          [0,1,2,3,4,5,6,7,8,9].map((item) => {
+          parks.map((park) => {
             return (
-              <Grid item xs={12} md={6} lg={4} xl={3}>
-                <ParkCard />
+              <Grid key={park.id} item xs={12} md={6} lg={4} xl={3}>
+                <ParkCard park={park} />
               </Grid>
             )
           })
