@@ -18,7 +18,12 @@ const PARKS_QUERY = gql`
         node {
           id
           name
+          fullName
           description
+          states
+          addresses
+          phones
+          imagesData
         }
       }
     }

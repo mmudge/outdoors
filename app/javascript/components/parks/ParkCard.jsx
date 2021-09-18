@@ -39,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+    // {
+    //   "credit": "NPS/Jim Peaco",
+    //   "altText": "Crowd watching Aurum Geyser erupt",
+    //   "title": "Aurum Geyser",
+    //   "id": 1789,
+    //   "caption": "Aurum Geyser Erupting",
+    //   "url": "https://www.nps.gov/common/uploads/structured_data/3C7D2FBB-1DD8-B71B-0BED99731011CFCE.jpg"
+    // },
+
 export default function ParkCard({park}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -60,13 +69,13 @@ export default function ParkCard({park}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={park.name}
-        subheader="September 14, 2016"
+        title={park.fullName}
+        subheader={park.states}
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image={park.imagesData[0].url}
+        title={park.imagesData[0].title}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

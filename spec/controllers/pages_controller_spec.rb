@@ -10,6 +10,7 @@ RSpec.describe PagesController, type: :controller do
             node {
               id
               name
+              images_data
             }
           }
         }
@@ -19,7 +20,6 @@ RSpec.describe PagesController, type: :controller do
 
   it 'executes a graphql query' do
     get :home, params: { query: query}
-
     puts response.body
 
     expect(response).to be_truthy

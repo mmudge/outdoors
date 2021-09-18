@@ -65,7 +65,7 @@ const AppWrapper = () => {
               {
                 routes.map((route) => {
                   return (
-                    <Route path={route.path}>
+                    <Route key={route.path} path={route.path}>
                       {route.component}
                     </Route>
                   )
