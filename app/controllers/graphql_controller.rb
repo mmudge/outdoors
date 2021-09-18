@@ -4,6 +4,9 @@ class GraphqlController < ApplicationController
   # but you'll have to authenticate your user separately
   # protect_from_forgery with: :null_session
 
+  # skip_before_action :verify_authenticity_token
+  skip_forgery_protection
+
   def execute
     variables = prepare_variables(params[:variables])
     query = params[:query]
@@ -12,7 +15,7 @@ class GraphqlController < ApplicationController
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = OutdoorsSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = Schema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?

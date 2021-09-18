@@ -6,6 +6,24 @@ import ParkCard from './ParkCard'
 import ParksHeader from './ParksHeader'
 import Box from '@material-ui/core/Box';
 
+import {
+  useQuery,
+  gql
+} from "@apollo/client"
+
+const PARKS_QUERY = gql`
+  query parksQuery {
+    parks {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+`
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -13,7 +31,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Parks = () => {
-  const classes = useStyles();
+  const { loading, error, data } = useQuery(PARKS_QUERY)
+
+  if (data) {
+    console.log('parks data', data)
+  }
+
+  const classes = useStyles()
 
   return (
     <Container maxWidth="md">
@@ -32,7 +56,7 @@ const Parks = () => {
         }
       </Grid>
     </Container>
-  );
+  )
 }
 
 export default Parks

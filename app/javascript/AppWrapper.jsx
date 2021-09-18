@@ -11,6 +11,23 @@ import Navbar from './components/Navbar'
 import Parks from './components/parks/Parks'
 import Home from './components/home/Home'
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink
+} from "@apollo/client"
+
+const link = createHttpLink({
+  uri: '/graphql',
+  credentials: 'same-origin'
+});
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link
+})
+
 
 const theme = createTheme({
   palette: {
@@ -39,24 +56,26 @@ const routes = [
 
 const AppWrapper = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Box bgcolor={theme.palette.grey[50]}>
-        <Router>
-          <Navbar />
-          <Switch>
-            {
-              routes.map((route) => {
-                return (
-                  <Route path={route.path}>
-                    {route.component}
-                  </Route>
-                )
-              })
-            }
-          </Switch>
-        </Router>
-      </Box>
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <Box bgcolor={theme.palette.grey[50]}>
+          <Router>
+            <Navbar />
+            <Switch>
+              {
+                routes.map((route) => {
+                  return (
+                    <Route path={route.path}>
+                      {route.component}
+                    </Route>
+                  )
+                })
+              }
+            </Switch>
+          </Router>
+        </Box>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
 
