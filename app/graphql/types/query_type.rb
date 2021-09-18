@@ -9,11 +9,15 @@ module Types
 
     description 'Root query'
 
-    # field :parks, [ParkType], null: true
-    field :parks, ParkType.connection_type, null: true
+    field :parks, ParkType.connection_type, null: true do
+      description "Parks index"
+      argument :query, String, required: false
+    end
 
-    def parks
-      Park.all
+    def parks(query: nil)
+      parks = Park.all
+      parks = parks.where('name ILIKE :q OR full_name ILIKE :q', q: "#{query}%") if query.present?
+      parks
     end
 
     field :park, ParkType, null: true do

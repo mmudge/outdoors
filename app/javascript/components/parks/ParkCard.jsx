@@ -72,11 +72,11 @@ export default function ParkCard({park}) {
         title={park.fullName}
         subheader={park.states}
       />
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
         image={park.imagesData[0].url}
         title={park.imagesData[0].title}
-      />
+      /> */}
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           { park.description }

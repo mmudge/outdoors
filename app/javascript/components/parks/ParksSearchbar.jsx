@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
       width: '60%'
     }
   }
-}));
+}))
 
-export default function BasicTextFields() {
+export default function ParksSearchbar({onChange}) {
   const classes = useStyles();
 
   const handleChange = (event) => {
-    console.log('handle click', event)
+    onChange(event.target.value)
   };
 
   const handleClick = (event) => {
@@ -40,7 +40,7 @@ export default function BasicTextFields() {
       }}
       color='primary'
       label='Search National Parks'
-      onChange={handleChange}
+      onChange={(e) => handleChange(e)}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
