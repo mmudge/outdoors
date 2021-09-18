@@ -25,36 +25,34 @@
       "type": "Mailing"
     }
   ],
-  "contacts": [
-    {
-      "phoneNumbers": [
-        {
-          "phoneNumber": "3073447381",
-          "description": "",
-          "extension": "",
-          "type": "Voice"
-        },
-        {
-          "phoneNumber": "3073442014",
-          "description": "",
-          "extension": "",
-          "type": "Fax"
-        },
-        {
-          "phoneNumber": "3073442386",
-          "description": "",
-          "extension": "",
-          "type": "TTY"
-        }
-      ],
-      "emailAddresses": [
-        {
-          "emailAddress": "yell_visitor_services@nps.gov",
-          "description": ""
-        }
-      ]
-    }
-  ],
+  "contacts": {
+    "phoneNumbers": [
+      {
+        "phoneNumber": "3073447381",
+        "description": "",
+        "extension": "",
+        "type": "Voice"
+      },
+      {
+        "phoneNumber": "3073442014",
+        "description": "",
+        "extension": "",
+        "type": "Fax"
+      },
+      {
+        "phoneNumber": "3073442386",
+        "description": "",
+        "extension": "",
+        "type": "TTY"
+      }
+    ],
+    "emailAddresses": [
+      {
+        "emailAddress": "yell_visitor_services@nps.gov",
+        "description": ""
+      }
+    ]
+  },
   "description": "Visit Yellowstone and experience the world's first national park. Marvel at a volcano's hidden power rising up in colorful hot springs, mudpots, and geysers. Explore mountains, forests, and lakes to watch wildlife and witness the drama of the natural world unfold. Discover the history that led to the conservation of our national treasures 'for the benefit and enjoyment of the people.'",
   "designation": "National Park",
   "directionsInfo": "Yellowstone National Park covers nearly 3,500 square miles in the northwest corner of Wyoming (3% of the park is in Montana and 1% is in Idaho). Yellowstone has five entrance stations, and several are closed to regular vehicles during winter. It takes many hours to drive between these entrances, so be sure to check the status of roads at the entrance you intend to use while planning your trip and before you arrive.",

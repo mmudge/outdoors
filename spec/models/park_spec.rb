@@ -42,7 +42,7 @@ RSpec.describe Park, type: :model do
       expect(park.url).to eq(park_data['url'])
       expect(park.weather).to eq(park_data['weatherInfo'])
       expect(park.addresses).to eq(park_data['addresses'])
-      expect(park.phones).to eq(park_data['contacts'].first['phoneNumbers'].map { |p| p['phoneNumber']})
+      expect(park.phones).to eq(['3073447381', '3073442014', '3073442386'])
       expect(park.enterance_fees).to eq(park_data['enteranceFees'])
       expect(park.enterance_passes).to eq(park_data['enterancePasses'])
       expect(park.images_data).to eq(park_data['images'])

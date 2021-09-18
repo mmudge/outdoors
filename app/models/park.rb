@@ -6,6 +6,7 @@ class Park < ApplicationRecord
       parks_data = nps_api.get_parks
 
       parks_data.each do |park_data|
+
         park = Park.find_or_initialize_by(code: park_data['parkCode'])
 
         park.full_name = park_data['fullName']
@@ -19,7 +20,7 @@ class Park < ApplicationRecord
         park.url = park_data['url']
         park.weather = park_data['weatherInfo']
         park.addresses = park_data['addresses']
-        park.phones = park_data['contacts'].first['phoneNumbers'].map { |p| p['phoneNumber']}
+        park.phones = park_data['contacts']['phoneNumbers'].map { |p| p['phoneNumber']}
         park.enterance_fees = park_data['enteranceFees']
         park.enterance_passes = park_data['enterancePasses']
         park.images_data = park_data['images']
