@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_030951) do
     t.jsonb "addresses"
     t.jsonb "phones"
     t.text "description"
-    t.string "type"
+    t.string "park_type"
     t.text "directions"
     t.string "directions_url"
     t.jsonb "enterance_fees"

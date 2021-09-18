@@ -4,7 +4,7 @@ class CreateParks < ActiveRecord::Migration[6.1]
       t.jsonb :addresses
       t.jsonb :phones
       t.text :description
-      t.string :type
+      t.string :park_type
       t.text :directions
       t.string :directions_url
       t.jsonb :enterance_fees
