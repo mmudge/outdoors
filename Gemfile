@@ -51,3 +51,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'httparty', '~> 0.19.0'
+gem 'graphql', '~> 1.12', '>= 1.12.16'
+gem 'graphiql-rails', group: :development
