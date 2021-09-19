@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,6 +59,7 @@ export default function ParkCard({park}) {
 
   return (
     <Card className={classes.root}>
+      <Link to={`/national_parks/${park.id}`}>go to page</Link>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -72,11 +74,11 @@ export default function ParkCard({park}) {
         title={park.fullName}
         subheader={park.states}
       />
-      {/* <CardMedia
+      <CardMedia
         className={classes.media}
         image={park.imagesData[0].url}
         title={park.imagesData[0].title}
-      /> */}
+      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           { park.description }
@@ -100,6 +102,7 @@ export default function ParkCard({park}) {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>

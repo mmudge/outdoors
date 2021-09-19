@@ -10,6 +10,7 @@ import { green, amber, grey } from '@material-ui/core/colors'
 import Navbar from './components/Navbar'
 import Parks from './components/parks/Parks'
 import Home from './components/home/Home'
+import Park from './components/park/Park.jsx'
 
 import {
   ApolloClient,
@@ -17,6 +18,7 @@ import {
   ApolloProvider,
   createHttpLink
 } from "@apollo/client"
+import ParksHeader from "./components/parks/ParksHeader";
 
 const link = createHttpLink({
   uri: '/graphql',
@@ -50,6 +52,7 @@ const theme = createTheme({
 
 // home path '/' must be last or all paths will match
 const routes = [
+  { path: '/national_parks/:id', component: <Park/>},
   { path: '/national_parks', component: <Parks />},
   { path: '/', component: <Home />}
 ]
