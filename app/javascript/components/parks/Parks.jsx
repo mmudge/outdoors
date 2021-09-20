@@ -17,12 +17,10 @@ const PARKS_QUERY = gql`
       edges {
         node {
           id
-          name
           fullName
+          name
           description
           states
-          addresses
-          phones
           imagesData
         }
       }
@@ -46,14 +44,6 @@ const Parks = () => {
   const classes = useStyles()
   const { loading, error, data, refetch } = useQuery(PARKS_QUERY)
 
-  // if (loading) {
-  //   return (
-  //     <div className={classes.loading}>
-  //       <LinearProgress color="secondary" />
-  //     </div>
-  //   )
-  // }
-
   const handleSearchChange = (value) => {
     refetch({ query: value })
   }
@@ -63,8 +53,6 @@ const Parks = () => {
   if (!loading && data) {
     parks = data.parks.edges.map((e) => e.node)
   }
-
-  // const parks = data.parks.edges.map((e) => e.node)
 
   return (
     <Container maxWidth="md">
