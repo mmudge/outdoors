@@ -26,7 +26,7 @@ module Types
     end
 
     def park(id:)
-      Park.find(id: id)
+      Park.find(id)
     end
   end
 end
