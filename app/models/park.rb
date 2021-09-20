@@ -21,8 +21,8 @@ class Park < ApplicationRecord
         park.weather = park_data['weatherInfo']
         park.addresses = park_data['addresses']
         park.phones = park_data['contacts']['phoneNumbers'].map { |p| p['phoneNumber']}
-        park.enterance_fees = park_data['enteranceFees']
-        park.enterance_passes = park_data['enterancePasses']
+        park.entrance_fees = park_data['entranceFees']
+        park.entrance_passes = park_data['entrancePasses']
         park.images_data = park_data['images']
 
         lat, long = park_data['latLong'].split(',')

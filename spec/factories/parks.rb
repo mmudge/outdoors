@@ -12,8 +12,8 @@ FactoryBot.define do
     weather { 'myString' }
     addresses { nil }
     phones { nil }
-    enterance_fees { nil }
-    enterance_passes { nil }
+    entrance_fees { nil }
+    entrance_passes { nil }
     images_data { nil }
     latitude { nil }
     longitude { nil }

@@ -15,8 +15,8 @@ module Types
     field :park_type, String, null: true
     field :directions, String, null: true
     field :directions_url, String, null: true
-    field :enterance_fees, GraphQL::Types::JSON, null: true
-    field :enterance_passes, GraphQL::Types::JSON, null: true
+    field :entrance_fees, GraphQL::Types::JSON, null: true
+    field :entrance_passes, GraphQL::Types::JSON, null: true
     field :images_data, GraphQL::Types::JSON, null: true
     field :hours, GraphQL::Types::JSON, null: true
     field :states, GraphQL::Types::JSON, null: true
