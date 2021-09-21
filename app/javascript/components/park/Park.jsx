@@ -17,6 +17,7 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import InfoIcon from '@material-ui/icons/Info';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 // import { useTheme, useMediaQuery } from '@material-ui/core';
@@ -35,6 +36,7 @@ const PARK_QUERY = gql`
       imagesData
       entranceFees
       entrancePasses
+      addresses
     }
   }
 `
@@ -78,7 +80,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     overflow: 'hidden',
-  }
+  },
+  textSecondary: theme.palette.text.secondary
 }))
 
 const Park = () => {
@@ -110,9 +113,22 @@ const Park = () => {
         <Typography color='textPrimary' variant='h2' component='h1' align='center'>
           {park.fullName}
         </Typography>
-        <Typography color='textSecondary' variant='body1' component='h6' align='center'>
-          {park.states.split(',').join(' ')}
-        </Typography>
+        <Box pt={2} display='flex' justifyContent='center'>
+          <Box pr={1}>
+            <LocationOnIcon fontSize='small' color='disabled' />
+          </Box>
+          <div>
+              { park.addresses.filter((a) => a.type === 'Physical').map((a) => {
+                return (
+                  <Typography color='textSecondary' variant='body2' component='h6' align='center'>
+                    {`${a.line1}, ${a.city}, ${a.stateCode} ${a.postalCode}`}
+                  </Typography>
+                )
+              })}
+            </div>
+          </Box>
+
+          {/* "city"=>"Hodgenville", "type"=>"Physical", "line1"=>"2995 Lincoln Farm Road", "line2"=>"", "line3"=>"", "stateCode"=>"KY", "postalCode"=>"42748" */}
       </Box>
       <Box pb={6} className={classes.imagesRoot}>
         <ImageList rowHeight={246} cols={3}>
