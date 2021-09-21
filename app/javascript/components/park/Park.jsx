@@ -18,6 +18,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import InfoIcon from '@material-ui/icons/Info';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 // import { useTheme, useMediaQuery } from '@material-ui/core';
@@ -100,6 +101,7 @@ const Park = () => {
 
   const tabs = [
     { label: 'INFO', icon: <InfoIcon className={classes.icon} />},
+    { label: 'HOURS', icon: <AccessTimeIcon className={classes.icon} />},
     { label: 'FEES & PASSES', icon: <AttachMoneyIcon className={classes.icon} />},
     { label: 'WEATHER', icon: <CloudIcon classes={{root: classes.icon}} />},
     { label: 'DIRECTIONS', icon: <DirectionsIcon classes={{root: classes.icon}} />},
@@ -120,15 +122,13 @@ const Park = () => {
           <div>
               { park.addresses.filter((a) => a.type === 'Physical').map((a) => {
                 return (
-                  <Typography color='textSecondary' variant='body2' component='h6' align='center'>
+                  <Typography key={a.line1} color='textSecondary' variant='body2' component='h6' align='center'>
                     {`${a.line1}, ${a.city}, ${a.stateCode} ${a.postalCode}`}
                   </Typography>
                 )
               })}
             </div>
           </Box>
-
-          {/* "city"=>"Hodgenville", "type"=>"Physical", "line1"=>"2995 Lincoln Farm Road", "line2"=>"", "line3"=>"", "stateCode"=>"KY", "postalCode"=>"42748" */}
       </Box>
       <Box pb={6} className={classes.imagesRoot}>
         <ImageList rowHeight={246} cols={3}>
@@ -171,15 +171,23 @@ const Park = () => {
         <Typography color='textPrimary' variant='body1'>{ park.description }</Typography>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EntranceInfo title='FEES' entranceItem={park.entranceFees} />
-        <Box pt={5}>
-          <EntranceInfo title='PASSES' entranceItem={park.entrancePasses} />
-        </Box>
+        <Typography color='textPrimary' variant='body1'>{ park.hours }</Typography>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography color='textPrimary' variant='body1'>{ park.weather }</Typography>
+        <EntranceInfo title='FEES' entranceItem={park.entranceFees} />
+        {
+          park.entrancePasses.length ?
+            <Box pt={5}>
+              <EntranceInfo title='PASSES' entranceItem={park.entrancePasses} />
+            </Box>
+            :
+            ''
+        }
       </TabPanel>
       <TabPanel value={value} index={3}>
+        <Typography color='textPrimary' variant='body1'>{ park.weather }</Typography>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
         <Typography color='textPrimary' variant='body1'>{ park.directions }</Typography>
       </TabPanel>
     </PageWrapper>
