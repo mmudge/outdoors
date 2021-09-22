@@ -23,6 +23,7 @@ import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 // import { useTheme, useMediaQuery } from '@material-ui/core';
 import EntranceInfo from './EntranceInfo'
+import HoursInfo from './HoursInfo'
 
 const PARK_QUERY = gql`
   query park($id: ID!) {
@@ -38,36 +39,17 @@ const PARK_QUERY = gql`
       entranceFees
       entrancePasses
       addresses
+      hours
     }
   }
 `
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`a11y-tabpanel-${index}`}
-      aria-labelledby={`a11y-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box pt={5}>
-          { children }
-        </Box>
-      )}
-    </div>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   tab: {
     flexDirection: 'row !important',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '0px !important'
+    marginBottom: '0px !important',
   },
   icon: {
     marginBottom: '0px !important',
@@ -84,6 +66,30 @@ const useStyles = makeStyles((theme) => ({
   },
   textSecondary: theme.palette.text.secondary
 }))
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`a11y-tabpanel-${index}`}
+      aria-labelledby={`a11y-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box pt={3}>
+          <Paper elevation={0} variant='outlined'>
+            <Box p={3}>
+              { children }
+            </Box>
+          </Paper>
+        </Box>
+      )}
+    </div>
+  );
+}
 
 const Park = () => {
   const classes = useStyles();
@@ -171,7 +177,7 @@ const Park = () => {
         <Typography color='textPrimary' variant='body1'>{ park.description }</Typography>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Typography color='textPrimary' variant='body1'>{ park.hours }</Typography>
+        <HoursInfo hours={park.hours} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EntranceInfo title='FEES' entranceItem={park.entranceFees} />
