@@ -155,6 +155,7 @@ const Park = () => {
           indicatorColor="secondary"
           textColor="secondary"
           aria-label="icon label tabs example"
+          centered
         >
           {
             tabs.map((tab) => {
