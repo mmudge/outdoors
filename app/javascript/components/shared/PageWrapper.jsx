@@ -1,9 +1,18 @@
 import React from 'react'
 import { Container, Box } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh'
+  },
+}))
 
 const PageWrapper = (props) => {
+  const classes = useStyles()
+
   return (
-    <Container maxWidth="md">
+    <Container className={classes.root} maxWidth="md">
       <Box pt={20} pb={10}>
         { props.children }
       </Box>

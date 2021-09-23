@@ -6,14 +6,14 @@ import {
 import {
   Grid,
   Box,
-  Button
+  Button,
+  Typography
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 import ParkCard from './ParkCard'
 import ParksHeader from './ParksHeader'
 import PageWrapper from '../shared/PageWrapper'
-
 
 const PARKS_QUERY = gql`
   query parks($query: String, $first: Int, $cursor: String) {
@@ -138,6 +138,13 @@ const Parks = () => {
         )
       }
 
+      {
+        !parks.length && (
+          <Box display='flex' justifyContent='center'>
+            <Typography color='textSecondary' variant='body1'>No data</Typography>
+          </Box>
+        )
+      }
     </PageWrapper>
   )
 }
