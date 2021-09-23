@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import {
   Card,
@@ -7,9 +7,10 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Button
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+  Button,
+  Collapse
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,16 +20,6 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatar: {
     backgroundColor: theme.palette.primary.main,
   },
@@ -37,11 +28,22 @@ const useStyles = makeStyles((theme) => ({
   },
   bold: {
     fontWeight: 500
+  },
+  content: {
+    cursor: 'pointer',
+    '&:hover': {
+       cursor: 'pointer',
+    },
   }
 }));
 
 export default function ParkCard({park}) {
-  const classes = useStyles();
+  const classes = useStyles()
+  const [expanded, setExpanded] = useState(false)
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded)
+  }
 
   return (
     <Card className={classes.root}>
@@ -61,10 +63,12 @@ export default function ParkCard({park}) {
         image={park.imagesData[0].url}
         title={park.imagesData[0].title}
       />
-      <CardContent>
+      <CardContent className={classes.content} onClick={() => handleExpandClick()}>
+        <Collapse in={expanded} timeout="auto" collapsedSize='100px'>
         <Typography variant="body2" color="textSecondary" component="p">
           { park.description }
         </Typography>
+        </Collapse>
       </CardContent>
       <CardActions disableSpacing>
         <Button
