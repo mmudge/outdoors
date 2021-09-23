@@ -1,9 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,15 +21,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function ParksSearchbar({onChange}) {
-  const classes = useStyles();
+export default function ParksSearchbar({onChange, isLoading}) {
+  const classes = useStyles()
 
   const handleChange = (event) => {
     onChange(event.target.value)
-  };
-
-  const handleClick = (event) => {
-    console.log('handle click', event)
   };
 
   return (
@@ -44,13 +41,14 @@ export default function ParksSearchbar({onChange}) {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton
-              aria-label="search national parks"
-              onClick={handleClick}
-              edge="end"
-            >
-              <SearchIcon/>
-            </IconButton>
+            {
+              isLoading && (
+                <Box mr={2}>
+                  <CircularProgress size={20} color='secondary' />
+                </Box>
+              )
+            }
+            <SearchIcon color='disabled'/>
           </InputAdornment>
         ),
       }}

@@ -5,11 +5,12 @@ import {
 } from "@apollo/client"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import ParkCard from './ParkCard'
 import ParksHeader from './ParksHeader'
-import Box from '@material-ui/core/Box';
 import PageWrapper from '../shared/PageWrapper'
-import Button from '@material-ui/core/Button';
+
 
 const PARKS_QUERY = gql`
   query parks($query: String, $first: Int, $cursor: String) {
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const Parks = () => {
   const classes = useStyles()
 
-  const { loading, error, data, refetch, fetchMore } = useQuery(PARKS_QUERY, {
+  const { loading, data, refetch, fetchMore } = useQuery(PARKS_QUERY, {
     variables: {
       first: 9
     },
@@ -94,9 +95,12 @@ const Parks = () => {
   }
 
   return (
-    <PageWrapper loading={loading}>
+    <PageWrapper>
       <Box pb={10}>
-        <ParksHeader onSearchChange={(value) => handleSearchChange(value)} />
+        <ParksHeader
+          isLoading={loading}
+          onSearchChange={(value) => handleSearchChange(value)}
+        />
       </Box>
       <Grid container justifyContent='center' spacing={3}>
         {
