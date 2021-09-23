@@ -1,27 +1,29 @@
 import React from 'react'
-import {
-  useParams
-} from "react-router-dom"
+import { useParams } from "react-router-dom"
 import {
   useQuery,
   gql
 } from "@apollo/client"
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import PageWrapper from '../shared/PageWrapper'
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import {
+  Box,
+  Typography,
+  Paper,
+  Tabs,
+  Tab,
+  ImageList,
+  ImageListItem,
+ } from '@material-ui/core';
+
 import CloudIcon from '@material-ui/icons/Cloud';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import InfoIcon from '@material-ui/icons/Info';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
+
 // import { useTheme, useMediaQuery } from '@material-ui/core';
+import PageWrapper from '../shared/PageWrapper'
 import EntranceInfo from './EntranceInfo'
 import HoursInfo from './HoursInfo'
 

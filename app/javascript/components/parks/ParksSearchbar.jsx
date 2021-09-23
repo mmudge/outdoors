@@ -1,10 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Box from '@material-ui/core/Box';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import {
+  InputAdornment,
+  TextField,
+  Box,
+  CircularProgress
+ } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,15 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import {
+  Container,
+  Box,
+  Typography,
+  Button
+ } from '@material-ui/core';
+
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 'calc(100vh - 64px)'
+    height: '100vh'
   },
   content: {
     height: '100%'

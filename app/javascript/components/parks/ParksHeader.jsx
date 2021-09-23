@@ -1,8 +1,11 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import {
+  Box,
+  Typography,
+  useTheme,
+  useMediaQuery
+} from '@material-ui/core';
 import ParksSearchBar from './ParksSearchbar'
-import Typography from '@material-ui/core/Typography';
-import { useTheme, useMediaQuery } from '@material-ui/core';
 
 const ParksHeader = ({onSearchChange, isLoading}) => {
   const theme = useTheme()

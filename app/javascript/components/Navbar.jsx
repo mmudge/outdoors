@@ -1,15 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Typography,
+  BottomNavigation,
+  BottomNavigationAction,
+  useTheme,
+  useMediaQuery
+} from '@material-ui/core'
+
 import HomeIcon from '@material-ui/icons/Home';
 import ExploreSharpIcon from '@material-ui/icons/ExploreSharp';
-import Typography from '@material-ui/core/Typography';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import { useTheme, useMediaQuery } from '@material-ui/core';
+
 
 const navItems = [
   { text: 'Home', to: '/', icon: <HomeIcon />, mobileOnly: true },
