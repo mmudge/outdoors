@@ -48,7 +48,7 @@ export default function ParkCard({park}) {
   return (
     <Card className={classes.root}>
       <CardHeader
-        title={park.fullName}
+        title={park.fullName.length > 25 ? park.name : park.fullName}
         subheader={park.states}
         titleTypographyProps={{
           variant: 'subtitle1',
