@@ -139,7 +139,7 @@ const Parks = () => {
       }
 
       {
-        !parks.length && (
+        !(parks.length && loading) && (
           <Box display='flex' justifyContent='center'>
             <Typography color='textSecondary' variant='body1'>No data</Typography>
           </Box>
