@@ -20,12 +20,12 @@ const PageWrapper = (props) => {
   const classes = useStyles()
   return (
     <Container maxWidth="md">
-      {props.loading ?
+      {/* {props.loading ?
         <div className={classes.loading}>
           <LinearProgress color="secondary" />
         </div>
-      : '' }
-      <Box py={10}>
+      : '' } */}
+      <Box pt={20} pb={10}>
         { props.children }
       </Box>
     </Container>

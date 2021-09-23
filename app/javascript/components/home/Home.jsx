@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
   containedSecondary: {
     color: theme.palette.common.white
   }
-}));
+}))
 
 const Home = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container className={classes.root} maxWidth="md">

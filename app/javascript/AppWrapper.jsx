@@ -12,24 +12,8 @@ import Parks from './components/parks/Parks'
 import Home from './components/home/Home'
 import Park from './components/park/Park.jsx'
 
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink
-} from "@apollo/client"
-import ParksHeader from "./components/parks/ParksHeader";
-
-const link = createHttpLink({
-  uri: '/graphql',
-  credentials: 'same-origin'
-});
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link
-})
-
+import {ApolloProvider} from "@apollo/client"
+import client from './apolloClient'
 
 const theme = createTheme({
   palette: {
