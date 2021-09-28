@@ -4,7 +4,7 @@ import {
   useQuery,
   gql
 } from "@apollo/client"
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Typography,
@@ -13,14 +13,14 @@ import {
   Tab,
   ImageList,
   ImageListItem,
- } from '@material-ui/core';
+ } from '@material-ui/core'
 
-import CloudIcon from '@material-ui/icons/Cloud';
-import DirectionsIcon from '@material-ui/icons/Directions';
-import InfoIcon from '@material-ui/icons/Info';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import CloudIcon from '@material-ui/icons/Cloud'
+import DirectionsIcon from '@material-ui/icons/Directions'
+import InfoIcon from '@material-ui/icons/Info'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
+import LocationOnIcon from '@material-ui/icons/LocationOn'
+import AccessTimeIcon from '@material-ui/icons/AccessTime'
 
 // import { useTheme, useMediaQuery } from '@material-ui/core';
 import PageWrapper from '../shared/PageWrapper'

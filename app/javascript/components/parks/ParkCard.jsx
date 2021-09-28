@@ -8,9 +8,13 @@ import {
   CardActions,
   Typography,
   Button,
-  Collapse
+  Collapse,
+  CardActionArea,
+  Chip,
+  Box
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import LocationOnIcon from '@material-ui/icons/LocationOn'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,8 +38,28 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
        cursor: 'pointer',
     },
+    backgroundColor: 'inherit',
+    '&:hover': {
+       backgroundColor: theme.palette.grey[50],
+    }
   }
-}));
+}))
+
+const States = ({states}) => {
+  if (states.includes(',')) {
+    states = states.split(',')
+  } else {
+    states = [states]
+  }
+
+  return (
+    <Box display='flex' flexWrap='wrap' alignItems='baseline'>
+      {
+        states.map((state) => <Chip key={state} variant="outlined" size="small" color='primary' label={state} />)
+      }
+    </Box>
+  )
+}
 
 export default function ParkCard({park}) {
   const classes = useStyles()
@@ -47,22 +71,25 @@ export default function ParkCard({park}) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        title={park.fullName.length > 25 ? park.name : park.fullName}
-        subheader={park.states}
-        titleTypographyProps={{
-          variant: 'subtitle1',
-          color: 'textPrimary',
-        }}
-        classes={{
-          title: classes.bold
-        }}
-      />
-      <CardMedia
-        className={classes.media}
-        image={park.imagesData[0].url}
-        title={park.imagesData[0].title}
-      />
+      <CardActionArea component={Link} to={`/national_parks/${park.id}`}>
+        <CardHeader
+          // title={park.fullName.length > 25 ? park.name : park.fullName}
+          title={park.fullName}
+          subheader={park.states ? <States states={park.states} /> : ''}
+          titleTypographyProps={{
+            variant: 'subtitle1',
+            color: 'textPrimary',
+          }}
+          classes={{
+            title: classes.bold
+          }}
+        />
+        <CardMedia
+          className={classes.media}
+          image={park.imagesData[0].url}
+          title={park.imagesData[0].title}
+        />
+      </CardActionArea>
       <CardContent className={classes.content} onClick={() => handleExpandClick()}>
         <Collapse in={expanded} timeout="auto" collapsedSize='100px'>
         <Typography variant="body2" color="textSecondary" component="p">
