@@ -14,7 +14,6 @@ import {
   Box
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
 
 const useStyles = makeStyles((theme) => ({
   root: {
