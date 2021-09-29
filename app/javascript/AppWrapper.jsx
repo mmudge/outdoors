@@ -4,9 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-import { createTheme, ThemeProvider } from '@material-ui/core'
-import Box from '@material-ui/core/Box';
-import { green, amber, grey } from '@material-ui/core/colors'
+import { ThemeProvider, Box } from '@material-ui/core'
+
 import Navbar from './components/Navbar'
 import Parks from './components/parks/Parks'
 import Home from './components/home/Home'
@@ -14,25 +13,7 @@ import Park from './components/park/Park.jsx'
 
 import {ApolloProvider} from "@apollo/client"
 import client from './apolloClient'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: green[700],
-      main: green[800],
-      dark: green[900]
-    },
-    secondary: {
-      light: amber[500],
-      main: amber[600],
-      dark: amber[700]
-    },
-    text: {
-      primary: grey[800],
-      secondary: grey[600]
-    }
-  }
-})
+import theme from './theme'
 
 // home path '/' must be last or all paths will match
 const routes = [
@@ -46,7 +27,7 @@ const AppWrapper = () => {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Box bgcolor={theme.palette.grey[50]}>
-          <Router>
+          <Router forceRefresh={false}>
             <Navbar />
             <Switch>
               {

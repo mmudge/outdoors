@@ -97,6 +97,7 @@ const Park = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const { id } = useParams()
+
   const { loading, error, data, refetch } = useQuery(PARK_QUERY, {
     variables: { id }
   })

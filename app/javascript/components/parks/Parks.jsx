@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Parks = () => {
+  console.log('parks mounted')
   const classes = useStyles()
 
   const { loading, data, refetch, fetchMore } = useQuery(PARKS_QUERY, {
