@@ -1,4 +1,5 @@
 require 'httparty'
+
 class NpsApi
   def initialize
     api_key = Rails.application.credentials[:nps_api_key]

@@ -81,7 +81,7 @@ const Nav = () => {
   const classes = useStyles()
   const items = navItems.filter((item) => !item.mobileOnly)
   return (
-    <AppBar position="fixed" color='primary'>
+    <AppBar position='fixed' color='primary'>
       <Toolbar>
         <div className={classes.titleContent}>
           <Button

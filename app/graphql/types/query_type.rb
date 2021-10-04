@@ -28,5 +28,13 @@ module Types
     def park(id:)
       Park.find(id)
     end
+
+    field :background_photos, [PexelPhotoType], null: true
+
+    def background_photos
+      api = PexelsApi.new
+      api.get_background_photos
+    end
+
   end
 end

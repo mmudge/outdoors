@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
        backgroundColor: theme.palette.grey[50],
     }
+  },
+  header: {
+    height: '80px'
   }
 }))
 
@@ -75,6 +78,7 @@ export default function ParkCard({park}) {
           // title={park.fullName.length > 25 ? park.name : park.fullName}
           title={park.fullName}
           subheader={park.states ? <States states={park.states} /> : ''}
+          className={classes.header}
           titleTypographyProps={{
             variant: 'subtitle1',
             color: 'textPrimary',
