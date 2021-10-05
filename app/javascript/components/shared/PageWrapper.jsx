@@ -13,7 +13,7 @@ const PageWrapper = (props) => {
 
   return (
     <Container className={classes.root} maxWidth="md">
-      <Box pt={20} pb={10}>
+      <Box py={10}>
         { props.children }
       </Box>
     </Container>

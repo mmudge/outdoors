@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useQuery,
   gql
@@ -8,7 +8,8 @@ import {
   Container,
   Box,
   Typography,
-  Button
+  Button,
+  useTheme,
  } from '@material-ui/core';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
@@ -29,16 +30,14 @@ const BG_PHOTOS_QUERY = gql`
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
-    // width: '100%',
-    // maxHeight: '100vh',
-    // position: 'relative'
-  },
-  wrapper: {
-    position: 'relative',
-    marginTop: '64px'
+    position: 'relative'
   },
   content: {
-    height: '100%'
+    height: 'calc(100vh - 64px)'
+  },
+  title: {
+    color: theme.palette.common.white,
+    fontWeight: theme.typography.fontWeightBold
   },
   containedSecondary: {
     color: theme.palette.common.white
@@ -48,16 +47,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     position: 'absolute',
-    top: 0,
+    top: '64px',
     left: 0,
-    right: 0,
-    bottom: 0,
     width: '100%',
-    // height: '100%'
+    height: 'auto',
+    position: 'fixed'
   }
 }))
 
 const Home = () => {
+  const [counter, setCounter] = useState(0)
   const classes = useStyles()
   const { loading, data } = useQuery(BG_PHOTOS_QUERY)
 
@@ -65,17 +64,30 @@ const Home = () => {
 
   console.log('data', data)
 
+
+  let bgSrc = data.backgroundPhotos[counter].landscape
+
+  setTimeout(() => {
+    if (counter === data.backgroundPhotos.length - 1) {
+      setCounter(0)
+    } else {
+      setCounter(counter + 1)
+    }
+  }, 8000);
+
   return (
-    <div className={classes.wrapper}>
+    <div>
       {
-        !loading && data ? <img src={data.backgroundPhotos[4].landscape} className={classes.backgroundPhoto} /> : ''
+        !loading && data ? <img src={bgSrc} className={classes.backgroundPhoto} /> : ''
       }
+
       <Container className={classes.root} maxWidth="md">
 
         <Box className={classes.content} display='flex' justifyContent='center' alignItems='center'>
           <Box className={classes.content} display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
             <Box pb={5}>
-              <Typography variant='h1' color='textPrimary' align='center'>Road Trip!</Typography>
+              <Typography variant='h1' className={classes.title} align='center'>Adventure</Typography>
+              <Typography variant='h3' className={classes.title} align='center'>Explore. Discover.</Typography>
             </Box>
             <Button
               variant="contained"
