@@ -36,5 +36,10 @@ module Types
       api.get_background_photos
     end
 
+    field :mapbox_api_key, String, null: true
+
+    def mapbox_api_key
+      Rails.application.credentials[:mapbox_api_key].to_s
+    end
   end
 end

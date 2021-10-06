@@ -8,15 +8,16 @@ import {
   Container,
   Box,
   Typography,
-  Button,
-  useTheme,
+  Button
  } from '@material-ui/core';
 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Link } from "react-router-dom"
+import Map from '../Map';
 
 const BG_PHOTOS_QUERY = gql`
   query bgPhotos {
+    mapboxApiKey
     backgroundPhotos {
       id
       url
@@ -24,6 +25,7 @@ const BG_PHOTOS_QUERY = gql`
       large
       landscape
     }
+
   }
 `
 
@@ -62,9 +64,6 @@ const Home = () => {
 
   if (loading) return <div></div>
 
-  console.log('data', data)
-
-
   let bgSrc = data.backgroundPhotos[counter].landscape
 
   setTimeout(() => {
@@ -77,9 +76,10 @@ const Home = () => {
 
   return (
     <div>
-      {
+      <Map />
+      {/* {
         !loading && data ? <img src={bgSrc} className={classes.backgroundPhoto} /> : ''
-      }
+      } */}
 
       <Container className={classes.root} maxWidth="md">
 
